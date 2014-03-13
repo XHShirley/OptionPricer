@@ -3,7 +3,7 @@
  * @author Yan Liu
  *
  */
-public class AmericanCallBinomialTreeFactory implements AlgorithmFactory {
+public class AmericanPutBinomialTreeFactory implements AlgorithmFactory {
 
 	@Override
 	public Option createOption(String string, Parameters paras) {
@@ -13,7 +13,7 @@ public class AmericanCallBinomialTreeFactory implements AlgorithmFactory {
 	
 	@Override
 	public Algorithm createAlgorithm(Parameters paras) {
-		Algorithm algorithm = new AmericanCallBinomialTree(paras);
+		Algorithm algorithm = new AmericanPutBinomialTree(paras);
 		return algorithm;
 	}
 }
