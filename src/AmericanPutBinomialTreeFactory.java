@@ -3,17 +3,18 @@
  * @author Yan Liu
  *
  */
-public class AmericanPutBinomialTreeFactory implements AlgorithmFactory {
+public class AmericanPutBinomialTreeFactory extends AlgorithmFactory {
 
-	@Override
+//	AmericanOption ao;
+//	AmericanPutBinomialTree apb;
+	
 	public Option createOption(String string, Parameters paras) {
-		Option option = new AmericanOption(string, paras);
+		AmericanOption option = new AmericanOption(string, paras);
 		return option;
 	}
 	
-	@Override
 	public Algorithm createAlgorithm(Parameters paras) {
-		Algorithm algorithm = new AmericanPutBinomialTree(paras);
+		AmericanPutBinomialTree algorithm = new AmericanPutBinomialTree(paras);
 		return algorithm;
 	}
 }

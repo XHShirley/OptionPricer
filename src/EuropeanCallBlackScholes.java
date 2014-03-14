@@ -6,7 +6,7 @@
  * @author Shirley Yang, Yan Liu
  *
  */
-public class EuropeanCallBlackScholes extends AlgoBlackScholes {
+public abstract class EuropeanCallBlackScholes extends AlgoBlackScholes {
 
 	/**
 	 * @param paras

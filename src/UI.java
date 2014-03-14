@@ -263,5 +263,18 @@ public class UI {
 		
 		
 	}
+
+	public String getOption() {
+		return option;
+	}
+
+
+	public String getAlgorithm() {
+		return algorithm;
+	}
+
+	public HashMap<String, String> getParameterMap() {
+		return parameterMap;
+	}
 	
 }
