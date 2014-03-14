@@ -20,7 +20,10 @@ public abstract class Algorithm {
 		this.paras = paras;
 	}
 
-	public abstract double calculate();
+	public double calculate(){
+		// To be continued...
+		return 0;
+	}
 	
 	public double[][] calculateVolatility(){
 		double[][] volatility = new double[VOLATILITY_NUMBER][2];
