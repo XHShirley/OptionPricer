@@ -18,7 +18,7 @@ public class Controller {
 	
 	private String optionName;
 	private String algoName;
-	private String className;
+	private StringBuilder className;
 	private Parameters paras;
 	private double result;
 	
@@ -30,9 +30,10 @@ public class Controller {
 	 */
 	public Controller(String option, String algorithm, HashMap<String,String> paraUI) {
 
-		this.optionName = option;
-		this.algoName = algoName;
-		this.className = option.trim().concat(algorithm).concat("Factory");
+		this.optionName = option.replace(" ", "");
+		this.algoName = algorithm.replace(" ", "");
+		this.className = new StringBuilder("");
+		this.className.append(this.optionName).append(this.algoName).append("Factory");
 		int length = paraUI.size();
 		ArrayList<Parameter> paraTemp = new ArrayList(length);
 		Iterator iterator = paraUI.entrySet().iterator();
@@ -59,7 +60,7 @@ public class Controller {
 		
 	public double calculate(){
 		try {
-			Class algoMatch = Class.forName(this.className);
+			Class algoMatch = Class.forName(this.className.toString());
 			AlgorithmFactory af = (AlgorithmFactory) algoMatch.newInstance();
 			this.result = af.calculate(this.optionName, paras);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {

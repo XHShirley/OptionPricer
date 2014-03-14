@@ -51,6 +51,7 @@ public class UI {
 	private HashMap<String, String> parameterMap;
 	private double S, K, R, T, V, optionPrice;
 	private JTextField textField_Price;
+	private double optionValue = 0.0;
 
 	/**
 	 * Launch the application.
@@ -104,7 +105,7 @@ public class UI {
 		panel.setLayout(null);			
 				
 		
-		JPanel panel_1 = new JPanel();
+		final JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(224, 255, 255));
 		panel_1.setBounds(438, 337, 126, 66);
 		frmOptionPricer.getContentPane().add(panel_1);
@@ -119,19 +120,7 @@ public class UI {
 		
 		//@yiming
 		JButton btnCalculate = new JButton("Calculate");
-		btnCalculate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int i=0;
-				for (String k: parameterMap.keySet()){
-					parameterMap.put(k, textFieldList.get(i).getText());
-					i++;	
-					System.out.println(k);
-					System.out.println(parameterMap.get(k));
-				}
-				
-				
-			}
-		});
+		
 		btnCalculate.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnCalculate.setBackground(SystemColor.controlHighlight);
 		btnCalculate.setBounds(438, 234, 118, 23);
@@ -225,14 +214,30 @@ public class UI {
 		
 		//@yiming
 						
-		JLabel lblResults = new JLabel("Results:");
+		final JLabel lblResults = new JLabel("Results:");
 		lblResults.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblResults.setBounds(438, 314, 81, 16);
 		frmOptionPricer.getContentPane().add(lblResults);
 		frmOptionPricer.setTitle("Option Pricer");
 		frmOptionPricer.setBounds(100, 100, 771, 685);
 		frmOptionPricer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		btnCalculate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i=0;
+				for (String k: parameterMap.keySet()){
+					parameterMap.put(k, textFieldList.get(i).getText());
+					i++;	
+					System.out.println(k);
+					System.out.println(parameterMap.get(k));
+				}
+				double result = calculate();
+				System.out.println(Double.toString(result));				
+			}
+		});
 	}
+	
+	
 	
 	//@yiming
 	private void drawParameter(HashMap<String, String> parameterMap, JPanel panel){	
@@ -277,4 +282,9 @@ public class UI {
 		return parameterMap;
 	}
 	
+	private double calculate(){
+		Controller con = new Controller(this.getOption(),this.getAlgorithm(),this.getParameterMap());
+		double result = con.calculate();
+		return result;
+	}
 }

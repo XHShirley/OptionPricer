@@ -17,7 +17,9 @@ public class Parameters {
 	 * 
 	 */
 	public Parameters(ArrayList<Parameter> para) {
+		
 		int length = para.size();
+		paras = new HashMap<String,Parameter>(length);
 		for(int i=0;i<length; i++){
 			this.paras.put(para.get(i).getName(), para.get(i));
 		}
