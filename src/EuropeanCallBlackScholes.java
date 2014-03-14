@@ -17,7 +17,7 @@ public class EuropeanCallBlackScholes extends AlgoBlackScholes {
 
 	@Override
 	public double payoff() {
-		return sNaught*StandardNormal.cumulative(d1)-strikePrice*Math.exp(-riskFreeRate*term)*StandardNormal.cumulative(d2);
+		return sNaught*StandardNormal.cumulative(d1)-strikePrice*Math.exp(riskFreeRate*(-1)*term)*StandardNormal.cumulative(d2);
 	}
 
 }
