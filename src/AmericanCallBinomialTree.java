@@ -53,7 +53,7 @@ public class AmericanCallBinomialTree extends AlgoBinomialTree {
 	/** Price an American or European option using a binomial tree. 
 	 *@return the estimated price of the option
 	 */
-	private void calculate() {
+	protected void calculate(double v) {
 		// the additional parameter here (int ao.getNumIntervals()) will be created in the GUI
 		// TODO Auto-generated method stub
 		int i;
@@ -102,11 +102,11 @@ public class AmericanCallBinomialTree extends AlgoBinomialTree {
 		binomialTree = null;
 		this.result = result;
 	}
-
-
-	public double getBinomValue() {
-		this.calculate();
-		return binomValue;
-	}
 	
+	@Override
+	protected double getResult() {
+		this.calculate(volatility);
+		return this.result;
+	}
+
 }

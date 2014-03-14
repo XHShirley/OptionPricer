@@ -21,11 +21,13 @@ public abstract class AlgoBlackScholes extends Algorithm {
 		this.strikePrice = ((ParaDouble)paras.getParas().get("strikePrice")).getValue();
 		this.riskFreeRate = ((ParaDouble)paras.getParas().get("riskFreeRate")).getValue();
 		this.volatility = ((ParaDouble)paras.getParas().get("volatility")).getValue();
-		this.term = ((ParaDouble)paras.getParas().get("term")).getValue();		
+		this.term = ((ParaDouble)paras.getParas().get("term")).getValue();
+		d1 = 0.0;
+		d2 = 0.0;
 	}
 	
 
-	public void calculate(double v){
+	protected void calculate(double v){
 		d1=(Math.log(sNaught/strikePrice)+(riskFreeRate+Math.pow(v,2)/2)/term)/(v*Math.sqrt(term));
 		d2=d1-v*Math.sqrt(term);
 		result = payoff();
@@ -36,5 +38,5 @@ public abstract class AlgoBlackScholes extends Algorithm {
 		return this.result;
 	}
 	
-	public abstract double payoff();
+	protected abstract double payoff();
 }

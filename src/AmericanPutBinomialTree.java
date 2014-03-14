@@ -21,7 +21,7 @@ public class AmericanPutBinomialTree extends AlgoBinomialTree {
 	double down;
 	double upProb;
 	double downProb;
-	double binomValue;
+//	double binomValue;
 	
 	/**
 	 * @param paras
@@ -40,7 +40,7 @@ public class AmericanPutBinomialTree extends AlgoBinomialTree {
 		this.down = 1.0 + this.riskFreeRate * this.deltaT - (this.volatility * Math.sqrt(this.deltaT));
 		this.upProb = 0.5;
 		this.downProb = 0.5;
-		this.binomValue = 0.0;
+		this.result = 0.0;
 	}
 	
 	private class Price
@@ -53,7 +53,7 @@ public class AmericanPutBinomialTree extends AlgoBinomialTree {
 	/** Price an American or European option using a binomial tree. 
 	 *@return the estimated price of the option
 	 */
-	private void calculate() {
+	protected void calculate(double v) {
 		// the additional parameter here (int ao.getNumIntervals()) will be created in the GUI
 		// TODO Auto-generated method stub
 		int i;
@@ -100,13 +100,14 @@ public class AmericanPutBinomialTree extends AlgoBinomialTree {
 			binomialTree[k] = null;
 		}
 		binomialTree = null;
-		this.binomValue = result;
+		this.result = result;
 	}
 
 
-	public double getBinomValue() {
-		this.calculate();
-		return binomValue;
+	@Override
+	protected double getResult() {
+		this.calculate(volatility);
+		return this.result;
 	}
 }
 

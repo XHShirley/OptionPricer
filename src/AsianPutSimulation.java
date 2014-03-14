@@ -18,7 +18,7 @@ public class AsianPutSimulation extends AlgoSimulation {
 	private int numIntervals;
 	private int numTrials;
 	double deltaT;
-	double valueOfOption;
+//	double valueOfOption;
 
 	/**
 	 * @param paras
@@ -33,11 +33,11 @@ public class AsianPutSimulation extends AlgoSimulation {
 		this.volatility = ((ParaDouble)paras.getParas().get("volatility")).getValue();
 		this.term = ((ParaDouble)paras.getParas().get("term")).getValue();		
 		this.deltaT = this.term/this.numIntervals;
-		this.valueOfOption=0.0;
+		this.result=0.0;
 
 	}
 	
-	private void calculate(){
+	protected void calculate(double v){
 
 		int i, trialCount;
 		double trialRunningSum, trialAverage, trialPayoff;
@@ -51,8 +51,8 @@ public class AsianPutSimulation extends AlgoSimulation {
 			double nns = 0;
 			for (i = 0; i < this.numIntervals; i++) {
 				nns = rand.nextGaussian();
-				s = s*Math.exp((this.riskFreeRate-this.volatility*this.volatility/2)*this.deltaT + 
-					this.volatility*nns*Math.sqrt(this.deltaT));
+				s = s*Math.exp((this.riskFreeRate-v*v/2)*this.deltaT + 
+					v*nns*Math.sqrt(this.deltaT));
 				trialRunningSum += s;
 
 			}
@@ -64,11 +64,11 @@ public class AsianPutSimulation extends AlgoSimulation {
 		simulationAveragePayoff = simulationRunningSum / this.numTrials;
 		double result;
 		result = simulationAveragePayoff * Math.exp(-this.riskFreeRate*this.term);
-		this.valueOfOption = result;
+		this.result = result;
 	}
 
-	public double getValueOfOption() {
-		this.calculate();
-		return valueOfOption;
+	public double getResult() {
+		this.calculate(volatility);
+		return this.result;
 	}
 }
