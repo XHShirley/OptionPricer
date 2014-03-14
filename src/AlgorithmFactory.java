@@ -17,9 +17,8 @@ public abstract class AlgorithmFactory {
 		
 		op = this.createOption(string, paras);
 		algo = this.createAlgorithm(paras);
-		double p = (ParaDouble)paras.getParas().get("volatility");
-		result = algo.calculate(p);
-		
+		this.result = algo.getResult();
+		return this.result;
 		
 	}
 	

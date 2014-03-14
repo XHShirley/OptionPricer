@@ -16,10 +16,11 @@ import java.util.Map.Entry;
  */
 public class Controller {
 	
-	String optionName;
-	String algoName;
-	String className;
-	Parameters paras;
+	private String optionName;
+	private String algoName;
+	private String className;
+	private Parameters paras;
+	private double result;
 	
 	
 //	public static void main(String[] args){
@@ -32,7 +33,7 @@ public class Controller {
 		this.optionName = option;
 		this.algoName = algoName;
 		this.className = option.trim().concat(algorithm).concat("Factory");
-
+		int length = paraUI.size();
 		ArrayList<Parameter> paraTemp = new ArrayList(length);
 		Iterator iterator = paraUI.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -60,13 +61,12 @@ public class Controller {
 		try {
 			Class algoMatch = Class.forName(this.className);
 			AlgorithmFactory af = (AlgorithmFactory) algoMatch.newInstance();
-			Option op = af.createOption(this.optionName, paras);
-			Algorithm al = af.createAlgorithm(paras);
+			this.result = af.calculate(this.optionName, paras);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		return this.result;
 		
 	}
 
