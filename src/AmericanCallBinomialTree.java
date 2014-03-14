@@ -1,14 +1,9 @@
 
-
-/**
- * 
- */
-
 /**
  * @author Shirley Yang
  *
  */
-public abstract class AmericanCallBinomialTree extends AlgoBinomialTree {
+public class AmericanCallBinomialTree extends AlgoBinomialTree {
 
 	private double sNaught;
 	private double strikePrice;
@@ -21,7 +16,7 @@ public abstract class AmericanCallBinomialTree extends AlgoBinomialTree {
 	double down;
 	double upProb;
 	double downProb;
-	double binomValue;
+//	double binomValue;
 	
 	/**
 	 * @param para
@@ -40,7 +35,7 @@ public abstract class AmericanCallBinomialTree extends AlgoBinomialTree {
 		this.down = 1.0 + this.riskFreeRate * this.deltaT - (this.volatility * Math.sqrt(this.deltaT));
 		this.upProb = 0.5;
 		this.downProb = 0.5;
-		this.binomValue = 0.0;
+		//this.binomValue = 0.0;
 	}
 	
 	private class Price
@@ -53,7 +48,7 @@ public abstract class AmericanCallBinomialTree extends AlgoBinomialTree {
 	/** Price an American or European option using a binomial tree. 
 	 *@return the estimated price of the option
 	 */
-	private void calculate() {
+	protected void calculate(double v) {
 		// the additional parameter here (int ao.getNumIntervals()) will be created in the GUI
 		// TODO Auto-generated method stub
 		int i;
@@ -100,13 +95,13 @@ public abstract class AmericanCallBinomialTree extends AlgoBinomialTree {
 			binomialTree[k] = null;
 		}
 		binomialTree = null;
-		this.binomValue = result;
-	}
-
-
-	public double getBinomValue() {
-		this.calculate();
-		return binomValue;
+		this.result = result;
 	}
 	
+	@Override
+	protected double getResult() {
+		this.calculate(volatility);
+		return this.result;
+	}
+
 }

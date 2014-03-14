@@ -3,7 +3,7 @@
  * @author Yan Liu
  *
  */
-public class EuropeanPutBlackScholesFactory implements AlgorithmFactory {
+public class EuropeanPutBlackScholesFactory extends AlgorithmFactory {
 
 	@Override
 	public Option createOption(String string, Parameters paras) {

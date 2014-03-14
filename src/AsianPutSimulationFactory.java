@@ -3,7 +3,7 @@
  * @author Yan Liu
  *
  */
-public class AsianPutSimulationFactory implements AlgorithmFactory {
+public class AsianPutSimulationFactory extends AlgorithmFactory {
 
 	@Override
 	public Option createOption(String string, Parameters paras) {
