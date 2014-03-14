@@ -7,7 +7,7 @@
  * @author Shirley Yang
  *
  */
-public class AlgoBinomialTree extends Algorithm {
+public abstract class AlgoBinomialTree extends Algorithm {
 	
 	private ParaInteger numIntervals = new ParaInteger("numIntervals",0);
 	private ParaDouble priceIntervals = new ParaDouble("priceIntervals",0.0);

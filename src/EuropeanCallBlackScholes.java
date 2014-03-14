@@ -13,12 +13,11 @@ public class EuropeanCallBlackScholes extends AlgoBlackScholes {
 	 */
 	public EuropeanCallBlackScholes(Parameters paras) {
 		super(paras);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public double payoff() {
-		return s*StandardNormal.cumulative(d1)-k*Math.exp(-r*t)*StandardNormal.cumulative(d2);
+		return sNaught*StandardNormal.cumulative(d1)-strikePrice*Math.exp(-riskFreeRate*term)*StandardNormal.cumulative(d2);
 	}
 
 }

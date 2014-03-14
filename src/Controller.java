@@ -27,6 +27,16 @@ public class Controller {
 		ParaOfSimulation paraSim = new ParaOfSimulation(50, 40, 0.1, 0.4,1.0,500,100000);
 		AlgoSimulation algSim = new AlgoSimulation(paraSim);
 		System.out.println("Asian: "+ algSim.put());
+		
+		
+		Class<?> c=Class.forName("AmericanPutBinomialTreeFactory");
+		try{
+		Option op = c.newInstance().createOption();
+		}
+		catch(Exception ex){
+			throw ex;
+		}
+		
 
 	}
 

@@ -8,7 +8,7 @@
  */
 
 
-public class AlgoSimulation extends Algorithm {
+public abstract class AlgoSimulation extends Algorithm {
 	
 	private ParaInteger numIntervals = new ParaInteger("numIntervals",0);
 	private ParaInteger numTrials = new ParaInteger("numTrials",0);

@@ -21,7 +21,7 @@ public class AmericanCallBinomialTree extends AlgoBinomialTree {
 	double down;
 	double upProb;
 	double downProb;
-	double binomValue;
+//	double binomValue;
 	
 	/**
 	 * @param para
@@ -40,7 +40,7 @@ public class AmericanCallBinomialTree extends AlgoBinomialTree {
 		this.down = 1.0 + this.riskFreeRate * this.deltaT - (this.volatility * Math.sqrt(this.deltaT));
 		this.upProb = 0.5;
 		this.downProb = 0.5;
-		this.binomValue = 0.0;
+		//this.binomValue = 0.0;
 	}
 	
 	private class Price
@@ -100,7 +100,7 @@ public class AmericanCallBinomialTree extends AlgoBinomialTree {
 			binomialTree[k] = null;
 		}
 		binomialTree = null;
-		this.binomValue = result;
+		this.result = result;
 	}
 
 
