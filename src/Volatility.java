@@ -98,12 +98,12 @@ public class Volatility extends JPanel{
 	      double a = 70;
 	      int b;
 	      for (int i = 0; i < (maxDataPoints-1)/2 ; i++) {
-	    	  b=random.nextInt(10);
+	    	  b=random.nextInt(15);
 	    	  prices.add(a-b);
 	         a=a-b;
 	      }
 	      for (int i = 0; i < (maxDataPoints-1)/2 ; i++) {
-	    	  b=random.nextInt(10);   
+	    	  b=random.nextInt(15);   
 	    	  prices.add(a+b);
 		         a=a+b;
 		      }
