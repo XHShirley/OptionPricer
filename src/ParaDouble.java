@@ -8,7 +8,7 @@
  */
 public class ParaDouble extends Parameter {
 	
-	double value;
+	private double value;
 	
 	public ParaDouble(String name, double value) {
 		super(name);
@@ -21,9 +21,9 @@ public class ParaDouble extends Parameter {
 	}
 
 
-	public void setValue(double value) {
-		this.value = value;
-	}
+//	public void setValue(double value) {
+//		this.value = value;
+//	}
 
 
 //	/**
