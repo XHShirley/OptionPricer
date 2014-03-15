@@ -42,18 +42,23 @@ public abstract class Algorithm {
 //	}
 	
 	private void calculateVolatility(){
-		double n = varVolatility;		
-		for (int i=(VOLATILITY_NUMBER+1)/2;i >= 0; i--){
+		double n = varVolatility;
+		double interval=(CHANGE_RATE*n)/((VOLATILITY_NUMBER-1)/2);
+		for (int i=(VOLATILITY_NUMBER-1)/2;i >= 0; i--){
 			volatilities[i][0]=n;
+			System.out.println(n);
 			this.calculate(n);
+			System.out.println(this.getResult());
 			volatilities[i][1]=this.getResult();
-			n=n*(1-CHANGE_RATE);
+			n=n-interval;
 		}
 		n = varVolatility;
-		for (int i=(VOLATILITY_NUMBER+1)/2+1;i <VOLATILITY_NUMBER ; i++){
-			n=n*(1+CHANGE_RATE);
+		for (int i=(VOLATILITY_NUMBER-1)/2+1;i <VOLATILITY_NUMBER ; i++){
+			n=n+interval;
+			System.out.println(n);
 			volatilities[i][0]=n;
 			this.calculate(n);
+			System.out.println(this.getResult());
 			volatilities[i][1]=this.getResult();
 		}
 	}
