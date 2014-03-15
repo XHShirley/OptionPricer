@@ -44,9 +44,8 @@ import jxl.read.biff.BiffException;
  * @author Yiming
  *
  */
-
-public class UI {
-
+public class UI_Addin_Disp{
+	
 	private JFrame frmOptionPricer;
 	private ArrayList<JLabel> labelList=new ArrayList<JLabel>();
 	private ArrayList<JTextField> textFieldList=new ArrayList<JTextField>();
@@ -58,36 +57,24 @@ public class UI {
 	private double S, K, R, T, V, optionPrice;
 	private JTextField textField_Price;
 	private JTextField Results;
-	String inputFile="OptionAlgorithm.xls";
+	String folderPath;
+	String inputFile;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UI window = new UI();
-					window.frmOptionPricer.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
-	/**
-	 * Create the application.
-	 */
-	public UI() {
+	
+	public UI_Addin_Disp(String folderPath,String inputFile) {
+		this.folderPath=folderPath;
+		this.inputFile=inputFile;
 		initialize();
+		frmOptionPricer.setVisible(true);
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
 		optionList=new ArrayList<>();
 		ExcelReader.readOption(optionList,inputFile);	//@yiming	
 		
@@ -124,16 +111,15 @@ public class UI {
 		Results.setColumns(10);
 		
 		
-		JButton btnNewButton = new JButton("Advanced");
+		JButton btnNewButton = new JButton("Close");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				UI_Addin UI=new UI_Addin();
-				
+			public void actionPerformed(ActionEvent e) {		
+				frmOptionPricer.setVisible(false);
 			}
 		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnNewButton.setBackground(SystemColor.controlHighlight);
-		btnNewButton.setBounds(451, 446, 105, 23);
+		btnNewButton.setBounds(451, 458, 105, 23);
 		frmOptionPricer.getContentPane().add(btnNewButton);
 		
 		//@yiming 0314
@@ -310,21 +296,26 @@ public class UI {
 	public String getAlgorithm() {
 		return algorithm;
 	}
+	
+
+	public String getFolderPath() {
+		return folderPath;
+	}
 
 	public HashMap<String, String> getParameterMap() {
 		return parameterMap;
 	}
 	
 	private double calculate(){
-		Controller con = new Controller(this.getOption(),this.getAlgorithm(),this.getParameterMap());
+		Controller con = new Controller(this.getFolderPath(), this.getOption(),this.getAlgorithm(),this.getParameterMap());
 		double result = con.calculate();
 		return result;
 		}
 	
 	private void displayVolatitlity(){
-		Controller con = new Controller(this.getOption(),this.getAlgorithm(),this.getParameterMap());
-		con.displayVolatilitySmile();;
+		Controller con = new Controller(this.getFolderPath(), this.getOption(),this.getAlgorithm(),this.getParameterMap());
+		con.displayVolatilitySmile();
 		}
 
-	
+
 }

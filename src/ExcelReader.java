@@ -14,10 +14,16 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
+/**
+ * 
+ * @author Yiming
+ *
+ */
+
 public class ExcelReader {
 	
-	public static void readOption(ArrayList<String> optionList){
-		String inputFile="OptionAlgorithm.xls";       
+	public static void readOption(ArrayList<String> optionList, String inputFile){
+		       
         File inputWorkbook = new File(inputFile);
         Workbook w;        
         try {
@@ -41,8 +47,8 @@ public class ExcelReader {
                
 	}
 	
-	public static void readAlgorithm(String option, ArrayList<String> algorithmList) {
-		String inputFile="OptionAlgorithm.xls";       
+	public static void readAlgorithm(String option, ArrayList<String> algorithmList,String inputFile) {
+		       
         File inputWorkbook = new File(inputFile);
         algorithmList.add("Algorithms");
         Workbook w;        
@@ -71,8 +77,8 @@ public class ExcelReader {
 		
 	}
 	
-	public static void readParameter(String algorithm, HashMap<String, String> parameterMap) {
-		String inputFile="OptionAlgorithm.xls";       
+	public static void readParameter(String algorithm, HashMap<String, String> parameterMap, String inputFile) {
+		      
         File inputWorkbook = new File(inputFile);
         Workbook w;        
         try {
@@ -81,9 +87,10 @@ public class ExcelReader {
 			for (int i = 0; i < sheet.getRows(); i++){
 				Cell cell_algorithm= sheet.getCell(0, i);
 				if (cell_algorithm.getContents().equals(algorithm)){
-					Cell cell_parameter=sheet.getCell(1, i);					
+					Cell cell_parameter=sheet.getCell(1, i);
+					Cell cell_parameterType=sheet.getCell(2, i);
 						if(cell_parameter.getContents().equals("")){}
-						else{parameterMap.put(cell_parameter.getContents(),null);
+						else{parameterMap.put(cell_parameter.getContents(),cell_parameterType.getContents());
 						}	        		
 					}
 	        	}

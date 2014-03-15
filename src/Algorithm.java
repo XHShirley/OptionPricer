@@ -29,11 +29,19 @@ public abstract class Algorithm {
 	
 	protected abstract double getResult();
 	
+	public int getVolatilityNumber(){
+		return VOLATILITY_NUMBER;
+	}
+	
+	public double[][] getVolatilities(){
+		this.calculateVolatility();
+		return volatilities;
+	}
 //	private void setVarVolatility(double v){
 //		varVolatility = v;
 //	}
 	
-	public void calculateVolatility(){
+	private void calculateVolatility(){
 		double n = varVolatility;		
 		for (int i=(VOLATILITY_NUMBER+1)/2;i >= 0; i--){
 			volatilities[i][0]=n;
@@ -42,7 +50,7 @@ public abstract class Algorithm {
 			n=n*(1-CHANGE_RATE);
 		}
 		n = varVolatility;
-		for (int i=(VOLATILITY_NUMBER+1)/2+1;i <=VOLATILITY_NUMBER ; i++){
+		for (int i=(VOLATILITY_NUMBER+1)/2+1;i <VOLATILITY_NUMBER ; i++){
 			n=n*(1+CHANGE_RATE);
 			volatilities[i][0]=n;
 			this.calculate(n);

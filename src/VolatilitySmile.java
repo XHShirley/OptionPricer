@@ -13,13 +13,19 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+/**
+ * 
+ * @author Yiming
+ *
+ */
 
-
+@SuppressWarnings("serial")
 public class VolatilitySmile extends ApplicationFrame {
 	
-	public VolatilitySmile(String title) {
+	
+	public VolatilitySmile(String title, double[][] volatilities) {
 		super(title);
-		final XYDataset dataset = createDataset();
+		final XYDataset dataset = createDataset(volatilities);
         final JFreeChart chart = createChart(dataset);
         final ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -33,17 +39,13 @@ public class VolatilitySmile extends ApplicationFrame {
 		this.setVisible(true);
 	}
 	
-	private XYDataset createDataset(){
+	private XYDataset createDataset(double[][] volatilities){
 		final XYSeries series = new XYSeries("Volatility Smile");
-		series.add(1.0, 1.0);
-        series.add(2.0, 4.0);
-        series.add(3.0, 3.0);
-        series.add(4.0, 5.0);
-        series.add(5.0, 5.0);
-        series.add(6.0, 7.0);
-        series.add(7.0, 7.0);
-        series.add(8.0, 8.0);
-        final XYSeriesCollection dataset = new XYSeriesCollection();
+		for (int i=0; i<volatilities.length; i++){
+			series.add(volatilities[i][0], volatilities[i][1]);
+			
+		}
+		final XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
 		return dataset;
 		
@@ -53,8 +55,8 @@ public class VolatilitySmile extends ApplicationFrame {
 		
 		final JFreeChart chart = ChartFactory.createXYLineChart(
 	            "Volatility Smile",      
-	            "X",                      
-	            "Y",                      
+	            "Volatility",                      
+	            "Option Price",                      
 	            dataset,                  
 	            PlotOrientation.VERTICAL,
 	            true,                     

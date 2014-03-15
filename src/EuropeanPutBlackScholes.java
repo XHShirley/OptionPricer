@@ -17,6 +17,7 @@ public abstract class EuropeanPutBlackScholes extends AlgoBlackScholes {
 
 	@Override
 	public double payoff() {
+		System.out.println("put");
 		return strikePrice*Math.exp(riskFreeRate*(-1)*term)*StandardNormal.cumulative(d2*(-1))-sNaught*StandardNormal.cumulative(d1*(-1));
 	}
 	
